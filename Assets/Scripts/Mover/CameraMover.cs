@@ -3,19 +3,8 @@ using DG.Tweening;
 
 public class CameraMover : MonoBehaviour
 {
-    [SerializeField] private LevelComplete _levelComplete;
     [SerializeField] private float _distanceToMoveZ;
     [SerializeField] private float _time;
-
-    private void OnEnable()
-    {
-        _levelComplete.Completed += OnComlete;
-    }
-
-    private void OnDisable()
-    {
-        _levelComplete.Completed -= OnComlete;
-    }
 
     private void OnComlete(float delay)
     {

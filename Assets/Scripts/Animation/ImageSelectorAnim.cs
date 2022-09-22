@@ -17,12 +17,6 @@ public class ImageSelectorAnim : MonoBehaviour
     [SerializeField] private TMP_Text _energyText;
     [SerializeField] private Color _energyTextColor;
     [SerializeField] private float _speedColor;
-    [SerializeField] private LevelComplete _levelComplete;
-
-    private void OnEnable()
-    {
-        _levelComplete.Completed += OnLevelComplete;
-    }
 
     private void Start()
     {
@@ -33,21 +27,6 @@ public class ImageSelectorAnim : MonoBehaviour
             _energyText.DOColor(_energyTextColor, _speedColor);
             _energyFill.DOColor(_energyFillColor, _speedColor);
         });
-    }
-
-    private void OnDisable()
-    {
-        _levelComplete.Completed -= OnLevelComplete;
-    }
-
-    private void OnLevelComplete(float delay)
-    {
-        Invoke(nameof(Disable), delay);
-    }
-
-    private void Disable()
-    {
-        gameObject.SetActive(false);
     }
 
     private void OnValidate()

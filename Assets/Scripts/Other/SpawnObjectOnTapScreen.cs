@@ -4,14 +4,13 @@ using UnityEngine;
 public class SpawnObjectOnTapScreen : MonoBehaviour
 {
     [SerializeField] private EnergyViewCoins _coins;
-    [SerializeField] private LevelComplete _levelComplete;
 
     private GameObject _template;
     private int _cost;
 
     private void Update()
     {
-        if (_template != null && _levelComplete.IsComplete == false)
+        if (_template != null)
             Set();
     }
 
@@ -41,11 +40,6 @@ public class SpawnObjectOnTapScreen : MonoBehaviour
 
                         if (gameObject.TryGetComponent(out Fence fence))
                             fence.SetRotationY(place.RotationY);
-
-                        if (gameObject.TryGetComponent(out PoliceShooterAnim anim))
-                            anim.Init(_levelComplete);
-                        else if (gameObject.TryGetComponent(out AttackerAnim anim_2))
-                            anim_2.Init(_levelComplete);
                     }
                 }
             }
