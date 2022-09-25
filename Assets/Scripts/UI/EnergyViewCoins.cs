@@ -10,8 +10,8 @@ public class EnergyViewCoins : MonoBehaviour
     [SerializeField] private int _maxCount;
     [SerializeField] private TMP_Text _text;
     [SerializeField] private Slider _slider;
-    [SerializeField] private List<EnemySpawner> _enemySpawners;
 
+    private EnemySpawner[] _enemySpawners;
     private int _currentCoin;
 
     public event UnityAction<int> CoinChanged;
@@ -24,9 +24,11 @@ public class EnergyViewCoins : MonoBehaviour
     private void OnEnable()
     {
         CoinChanged += OnCoinChanged;
+        _enemySpawners = FindObjectsOfType<EnemySpawner>();
 
-        for (int i = 0; i < _enemySpawners.Count; i++)
-            _enemySpawners[i].Spawned += OnEnemySpawned;
+        if (_enemySpawners != null)
+            foreach (var spawner in _enemySpawners)
+                spawner.Spawned += OnEnemySpawned;
     }
 
     private void Start()
@@ -38,8 +40,9 @@ public class EnergyViewCoins : MonoBehaviour
     {
         CoinChanged -= OnCoinChanged;
 
-        for (int i = 0; i < _enemySpawners.Count; i++)
-            _enemySpawners[i].Spawned -= OnEnemySpawned;
+        if (_enemySpawners != null)
+            foreach (var spawner in _enemySpawners)
+                spawner.Spawned -= OnEnemySpawned;
     }
 
     public bool CanBuy(int cost)

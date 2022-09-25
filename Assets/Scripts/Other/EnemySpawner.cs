@@ -11,6 +11,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float _time;
     [SerializeField] private float _timeToStartSpawn;
     [SerializeField] private UnityEvent _started;
+    [SerializeField] private LevelController _levelController;
 
     private WaitForSeconds _sleep;
     private List<EnemyStickman> _stickmans = new List<EnemyStickman>();
@@ -18,6 +19,7 @@ public class EnemySpawner : MonoBehaviour
     private bool _isUsed;
 
     public bool IsActive { get; private set; }
+    public bool IsUsed => _isUsed;
     public IReadOnlyList<EnemyStickman> Stickmans => _stickmans;
 
     public event UnityAction<EnemyStickman> Spawned; 
@@ -26,6 +28,7 @@ public class EnemySpawner : MonoBehaviour
     {
         _sleep = new WaitForSeconds(_time);
         IsActive = true;
+        gameObject.SetActive(false);
     }
 
     private void Update()
@@ -47,10 +50,17 @@ public class EnemySpawner : MonoBehaviour
     {
         for (int i = 0; i < _count; i++)
         {
-            EnemyStickman enemySpawner = Instantiate(_template, transform);
-            _stickmans.Add(enemySpawner);
-            enemySpawner.SetTarget(_targetToMove);
-            Spawned?.Invoke(enemySpawner);
+            if (_levelController.IsLose)
+                break;
+
+            EnemyStickman enemy = Instantiate(_template, transform);
+            _stickmans.Add(enemy);
+
+            if (enemy.TryGetComponent(out AttackerAnim anim))
+                anim.Init(_levelController as IOnlyActionLose);
+
+            enemy.SetTarget(_targetToMove);
+            Spawned?.Invoke(enemy);
 
             if (i == _count - 1)
                 IsActive = false;

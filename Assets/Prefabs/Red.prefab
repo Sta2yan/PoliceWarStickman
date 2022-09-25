@@ -371,6 +371,7 @@ GameObject:
   - component: {fileID: 3392034301259369990}
   - component: {fileID: 3308279261648487675}
   - component: {fileID: 3263633752556859045}
+  - component: {fileID: 6828535372668168587}
   m_Layer: 0
   m_Name: Red
   m_TagString: Untagged
@@ -485,6 +486,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timeToAttack: 0.52
+  _damage: 1
 --- !u!114 &2126681959232137844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -539,6 +541,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: {fileID: 2126681959232137845}
   _particleSystem: {fileID: 8721766705229614770, guid: 84b610565097bbd438dada636ea03114, type: 3}
+--- !u!114 &6828535372668168587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2126681959232137840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 621cd81ea42e2e641811316ad99e113b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stickmanMover: {fileID: 2126681959232137844}
+  _anim: {fileID: 3392034301259369990}
 --- !u!1 &2142935749221522506
 GameObject:
   m_ObjectHideFlags: 0

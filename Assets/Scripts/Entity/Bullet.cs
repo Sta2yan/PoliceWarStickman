@@ -3,9 +3,8 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private const int Damage = 1000000;
-
     [SerializeField] private float _speed;
+    [SerializeField] private int _damage;
 
     private Transform _target;
 
@@ -22,7 +21,7 @@ public class Bullet : MonoBehaviour
         if (other.gameObject.TryGetComponent(out EnemyStickman stickman))
             if (stickman.TryGetComponent(out Health health))
             {
-                health.TakeDamage(Damage);
+                health.TakeDamage(_damage);
                 Destroy(gameObject);
             }
     }

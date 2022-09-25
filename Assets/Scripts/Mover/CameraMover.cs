@@ -3,12 +3,25 @@ using DG.Tweening;
 
 public class CameraMover : MonoBehaviour
 {
+    private const float StartDelay = 0.52f;
+
     [SerializeField] private float _distanceToMoveZ;
     [SerializeField] private float _time;
+    [SerializeField] private LevelController _levelController;
 
-    private void OnComlete(float delay)
+    private void OnEnable()
     {
-        Invoke(nameof(Move), delay);
+        _levelController.Ended += Move;
+    }
+
+    private void Start()
+    {
+        Invoke(nameof(Move), StartDelay);
+    }
+
+    private void OnDisable()
+    {
+        _levelController.Ended -= Move;
     }
 
     private void Move()

@@ -20,7 +20,7 @@ public class ListImageSelectors : MonoBehaviour
     private void OnChanged(ImageSelectorObject selectorObject)
     {
         foreach (var selector in _selectors)
-            if (selector != selectorObject)
+            if (selector != selectorObject && selector.Image != selector.RedImage)
                 selector.SetDefaultColor();
     }
 }

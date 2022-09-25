@@ -4,6 +4,7 @@ using UnityEngine.Events;
 public abstract class Attacker : MonoBehaviour, IDamagable
 {
     [SerializeField] private float _timeToAttack;
+    [SerializeField] private int _damage;
 
     private Health _target;
 
@@ -38,7 +39,7 @@ public abstract class Attacker : MonoBehaviour, IDamagable
         IsAttacking = true;
         AttackStarted?.Invoke();
 
-        Invoke(nameof(StartAttack), _timeToAttack);
+        StartAttack();
     }
 
     protected abstract void FindTargetForAttack(Collider other);
@@ -56,7 +57,7 @@ public abstract class Attacker : MonoBehaviour, IDamagable
         if (CanContinueAttack() == false)
             return;
 
-        _target.TakeDamage();
+        _target.TakeDamage(_damage);
         Attacked?.Invoke();
 
         if (CanContinueAttack() == false)

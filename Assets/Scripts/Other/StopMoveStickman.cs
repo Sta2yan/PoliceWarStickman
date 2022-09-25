@@ -18,5 +18,6 @@ public class StopMoveStickman : MonoBehaviour
     private void OnLevelComplete()
     {
         _stickmanMover.Stop();
+        _stickmanMover.ResetTarget();
     }
 }

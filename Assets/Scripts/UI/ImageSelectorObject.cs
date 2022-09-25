@@ -16,6 +16,9 @@ public class ImageSelectorObject : MonoBehaviour, IPointerClickHandler
     private Image _image;
     private Sprite _defaultSprite;
 
+    public Sprite RedImage => _redImage;
+    public Sprite Image => _image.sprite;
+
     public event UnityAction<ImageSelectorObject> Changed;
 
     private void Awake()

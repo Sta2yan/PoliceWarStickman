@@ -3,6 +3,8 @@ using UnityEngine.Events;
 
 public class Shooter : MonoBehaviour, IDamagable
 {
+    private const float _delay = 0.1f;
+
     [SerializeField] private float _timeToAttack;
     [SerializeField] private Bullet _template;
     [SerializeField] private Transform _point;
@@ -34,7 +36,7 @@ public class Shooter : MonoBehaviour, IDamagable
         IsAttacking = true;
         AttackStarted?.Invoke();
 
-        StartAttack();
+        Invoke(nameof(StartAttack), _delay);
     }
 
     private void FindTarget()
@@ -43,17 +45,11 @@ public class Shooter : MonoBehaviour, IDamagable
 
         if (colliders != null)
         {
-            for (int i = 0; i < colliders.Length; i++)
-            {
-                if (colliders[i].gameObject.TryGetComponent(out EnemyStickman stickman))
-                {
-                    if (stickman.TryGetComponent(out Health health))
-                    {
-                        Attack(health);
-                        break;
-                    }
-                }
-            }
+            Collider collider = colliders[Random.Range(0, colliders.Length)];
+
+            if (collider.gameObject.TryGetComponent(out EnemyStickman stickman))
+                if (stickman.TryGetComponent(out Health health))
+                    Attack(health);
         }
     }
 

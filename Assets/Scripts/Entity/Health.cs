@@ -9,6 +9,7 @@ public class Health : MonoBehaviour, IReadOnlyNull
     private int _currentHealth;
 
     public bool IsAlive => _currentHealth > 0;
+    public int CurrentHealth => _currentHealth;
 
     public event UnityAction Die;
     public event UnityAction Hitted;
