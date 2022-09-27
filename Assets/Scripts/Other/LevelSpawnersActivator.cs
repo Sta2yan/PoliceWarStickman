@@ -3,10 +3,20 @@ using UnityEngine;
 
 public class LevelSpawnersActivator : MonoBehaviour
 {
-    [SerializeField] private List<LevelSpawnerContainer> _spawners;
     [SerializeField] private LevelController _controller;
 
+    private List<LevelSpawnerContainer> _spawners = new List<LevelSpawnerContainer>();
     private int _currentIndex = 0;
+
+    public int CountLevels => _spawners.Count;
+
+    private void Awake()
+    {
+        LevelSpawnerContainer[] containers = GetComponentsInChildren<LevelSpawnerContainer>();
+
+        foreach (var container in containers)
+            _spawners.Add(container);
+    }
 
     private void OnEnable()
     {

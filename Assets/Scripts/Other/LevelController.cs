@@ -6,8 +6,9 @@ public class LevelController : MonoBehaviour, IOnlyActionStartEnded, IOnlyAction
 {
     [SerializeField] private float _delayEndLevel;
     [SerializeField] private UnityEvent End;
-    [SerializeField] private int _maxLevel;
+    [SerializeField] private LevelSpawnersActivator _activator;
 
+    private int _maxLevel;
     private int _currentLevel = 1;
 
     public int CurrentLevel => _currentLevel;
@@ -24,9 +25,13 @@ public class LevelController : MonoBehaviour, IOnlyActionStartEnded, IOnlyAction
     public event UnityAction Lose;
     public event UnityAction Win;
 
+    private void Awake()
+    {
+        _maxLevel = _activator.CountLevels;
+    }
+
     public void StartGame()
     {
-        _currentLevel++;
         Started?.Invoke();
         Changed?.Invoke(_currentLevel);
     }
@@ -35,10 +40,14 @@ public class LevelController : MonoBehaviour, IOnlyActionStartEnded, IOnlyAction
     {
         StartEnded?.Invoke();
 
-        if (_currentLevel <= _maxLevel)
+        if (_currentLevel == _maxLevel)
+            WinGame();
+        else if (_currentLevel % 10 != 0)
             Invoke(nameof(EndGame), _delayEndLevel);
         else
             WinGame();
+
+        _currentLevel++;
     }
 
     public void LoseGame()
@@ -50,6 +59,11 @@ public class LevelController : MonoBehaviour, IOnlyActionStartEnded, IOnlyAction
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 
     private void WinGame()

@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -63,16 +61,17 @@ public class EnergyViewCoins : MonoBehaviour
 
     private void OnEnemySpawned(EnemyStickman stickman)
     {
-        Health health = stickman.GetComponent<Health>();
-        health.Die += OnDie;
+        stickman.EnergyCollected += OnEnergyCollected;
     }
 
-    private void OnDie()
+    private void OnEnergyCollected(IEnergyCollectable stickman)
     {
-        if (_currentCoin <= _maxCount)
-        {
-            _currentCoin++;
-            CoinChanged?.Invoke(_currentCoin);
-        }
+        stickman.EnergyCollected -= OnEnergyCollected;
+        _currentCoin += stickman.EnergyCostBonus;
+
+        if (_currentCoin > _maxCount)
+            _currentCoin = _maxCount;
+
+        CoinChanged?.Invoke(_currentCoin);
     }
 }

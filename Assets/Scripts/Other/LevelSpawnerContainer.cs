@@ -4,9 +4,16 @@ using UnityEngine;
 public class LevelSpawnerContainer : MonoBehaviour
 {
     [SerializeField] private List<EnemySpawner> _spawners;
+    [SerializeField] private bool _isActive = true;
 
     private LevelController _controller;
     private bool _isComplete;
+
+    private void Awake()
+    {
+        if (_isActive == false)
+            _spawners = new List<EnemySpawner>();
+    }
 
     private void Update()
     {
