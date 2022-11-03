@@ -39,7 +39,7 @@ public class SpawnObjectOnTapScreen : MonoBehaviour
 
     private void Set()
     {
-        if (Input.touchCount > 0)
+        if (Input.touchCount > 0 || Input.GetMouseButton(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Mathf.Infinity));
             RaycastHit hit;
@@ -83,5 +83,7 @@ public class SpawnObjectOnTapScreen : MonoBehaviour
         for (int i = 0; i < _spawnedGameObjects.Count; i++)
             if (_spawnedGameObjects[i] != null)
                 Destroy(_spawnedGameObjects[i]);
+
+        _spawnedGameObjects.Clear();
     }
 }

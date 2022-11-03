@@ -84,5 +84,8 @@ public abstract class Attacker : MonoBehaviour, IDamagable
     {
         if (_timeToAttack < 0)
             _timeToAttack = 0;
+
+        if(_damage < 0)
+            _damage = 0;
     }
 }

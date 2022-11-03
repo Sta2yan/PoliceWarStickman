@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.agava.yandexgames": "https://github.com/forcepusher/com.agava.yandexgames.git#11.0.0",
     "com.unity.cinemachine": "2.6.17",
     "com.unity.collab-proxy": "1.13.5",
     "com.unity.device-simulator": "3.0.3-preview",

@@ -30,6 +30,7 @@ public class ImageSelectorObject : MonoBehaviour, IPointerClickHandler
     private void OnEnable()
     {
         _coins.CoinChanged += OnCoinChanged;
+        OnCoinChanged(_coins.CurrentCount);
     }
 
     private void OnDisable()
