@@ -31,7 +31,7 @@ public class PoliceShooterAnim : MonoBehaviour
     public void Init(IOnlyActionStartEnded levelEnded)
     {
         if (levelEnded == null)
-            throw new NullReferenceException();
+            throw new NullReferenceException(nameof(levelEnded));
 
         _levelEnded = levelEnded;
         _levelEnded.StartEnded += OnStartEnded;
@@ -40,7 +40,7 @@ public class PoliceShooterAnim : MonoBehaviour
     public void Init(IOnlyActionLose actionLose)
     {
         if (actionLose == null)
-            return;
+            throw new NullReferenceException(nameof(actionLose));
 
         _levelLose = actionLose;
         _levelLose.Lose += OnLose;

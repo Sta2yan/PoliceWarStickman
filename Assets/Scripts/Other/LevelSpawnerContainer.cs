@@ -47,7 +47,7 @@ public class LevelSpawnerContainer : MonoBehaviour
             return;
 
         if (_controller != null)
-            _controller.StartEndGame();
+            _controller.BeginEnd();
 
         _isComplete = true;
     }

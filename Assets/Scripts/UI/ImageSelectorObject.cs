@@ -61,4 +61,10 @@ public class ImageSelectorObject : MonoBehaviour, IPointerClickHandler
             if (_image.sprite != _selectImage)
                 _image.sprite = _defaultSprite;
     }
+
+    private void OnValidate()
+    {
+        if (_cost < 0)
+            throw new ArgumentOutOfRangeException(nameof(_cost));
+    }
 }

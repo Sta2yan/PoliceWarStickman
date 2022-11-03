@@ -42,4 +42,13 @@ public class MenuController : MonoBehaviour
         _winPanel.SetActive(true);
         _imageSelectorsPanel.SetActive(false);
     }
+
+    private void OnValidate()
+    {
+        if (_delayActiveLosePanel < 0)
+            _delayActiveLosePanel = 0;
+
+        if (_delayActiveWinPanel < 0)
+            _delayActiveWinPanel = 0;
+    }
 }

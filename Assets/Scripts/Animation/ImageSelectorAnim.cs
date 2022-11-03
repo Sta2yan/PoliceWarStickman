@@ -8,14 +8,19 @@ public class ImageSelectorAnim : MonoBehaviour
 {
     [SerializeField] private float _value;
     [SerializeField] private float _speed;
+    [Header("Image")]
     [SerializeField] private Image _energyImage;
     [SerializeField] private Color _energyImageColor;
+    [Header("Slider")]
     [SerializeField] private Image _energySlider;
     [SerializeField] private Color _energySliderColor;
+    [Header("Fill")]
     [SerializeField] private Image _energyFill;
     [SerializeField] private Color _energyFillColor;
+    [Header("Text")]
     [SerializeField] private TMP_Text _energyText;
     [SerializeField] private Color _energyTextColor;
+    [Header("Other")]
     [SerializeField] private float _speedColor;
 
     private void Start()

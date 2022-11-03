@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -67,5 +68,17 @@ public class EnemySpawner : MonoBehaviour
 
             yield return _sleep;
         }
+    }
+
+    private void OnValidate()
+    {
+        if (_count < 0)
+            throw new ArgumentOutOfRangeException(nameof(_count));
+
+        if (_time < 0)
+            throw new ArgumentOutOfRangeException(nameof(_time));
+
+        if (_timeToStartSpawn < 0)
+            throw new ArgumentOutOfRangeException(nameof(_timeToStartSpawn));
     }
 }

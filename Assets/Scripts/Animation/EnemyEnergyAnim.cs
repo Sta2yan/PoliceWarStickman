@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class EnemyEnergyAnim : MonoBehaviour
 {
+    private const float AdditionallyPosition = 1.5f;
+
     [SerializeField] private GameObject _templateEnergy;
     [SerializeField] private Health _health;
 
@@ -17,6 +19,6 @@ public class EnemyEnergyAnim : MonoBehaviour
 
     private void OnDie()
     {
-        Instantiate(_templateEnergy, new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z), Quaternion.identity);
+        Instantiate(_templateEnergy, new Vector3(transform.position.x, transform.position.y + AdditionallyPosition, transform.position.z), Quaternion.identity);
     }
 }

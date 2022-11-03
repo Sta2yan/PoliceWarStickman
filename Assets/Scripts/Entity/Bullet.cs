@@ -19,11 +19,13 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.TryGetComponent(out EnemyStickman stickman))
+        {
             if (stickman.TryGetComponent(out Health health))
             {
                 health.TakeDamage(_damage);
                 Destroy(gameObject);
             }
+        }
     }
 
     public void SetTarget(Transform target)
@@ -36,7 +38,10 @@ public class Bullet : MonoBehaviour
 
     private void OnValidate()
     {
-        if (_speed < 0)
+        if (_speed <= 0)
             throw new ArgumentOutOfRangeException(nameof(_speed));
+
+        if (_damage < 0)
+            throw new ArgumentOutOfRangeException(nameof(_damage));
     }
 }

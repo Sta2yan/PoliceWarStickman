@@ -87,4 +87,10 @@ public class EnergyViewCoins : MonoBehaviour
     {
         _currentCount = _maxCount;
     }
+
+    private void OnValidate()
+    {
+        if (_maxCount < 0)
+            _maxCount = 0;
+    }
 }

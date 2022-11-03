@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class AttackParticlesActivator : MonoBehaviour
 {
+    private const float AdditivePosition = 1f;
+
     [SerializeField] private Health _health;
     [SerializeField] private GameObject _particleSystem;
 
@@ -17,6 +19,6 @@ public class AttackParticlesActivator : MonoBehaviour
 
     private void OnHitted()
     {
-        Instantiate(_particleSystem, new Vector3(transform.position.x , transform.position.y + 1, transform.position.z), Quaternion.identity);
+        Instantiate(_particleSystem, new Vector3(transform.position.x , transform.position.y + AdditivePosition, transform.position.z), Quaternion.identity);
     }
 }

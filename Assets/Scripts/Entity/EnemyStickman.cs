@@ -49,9 +49,3 @@ public class EnemyStickman : MonoBehaviour, IEnergyCollectable
         EnergyCollected?.Invoke(this);
     }
 }
-
-public interface IEnergyCollectable
-{
-    public event UnityAction<IEnergyCollectable> EnergyCollected;
-    public int EnergyCostBonus { get; }
-}

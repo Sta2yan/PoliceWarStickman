@@ -62,10 +62,3 @@ public class CameraMover : MonoBehaviour
             _time = 0;
     }
 }
-
-public enum MoveAxis
-{
-    X,
-    Y,
-    Z
-}
